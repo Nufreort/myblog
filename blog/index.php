@@ -37,7 +37,9 @@ if (isset($_GET['action'])) {
 		{
 			if($_POST['password']==$_POST['password2'])
 			{
-				addUser($_POST['name'],$_POST['first_name'],$_POST['email'],$_POST['password']);
+				
+				$pass_hash = password_hash($_POST['password'],PASSWORD_DEFAULT);
+				addUser($_POST['name'],$_POST['first_name'],$_POST['email'],$pass_hash);
 			}
 			else
 			{
@@ -50,6 +52,41 @@ if (isset($_GET['action'])) {
 	}
 
 //end of add a user
+	
+// user connexion
+
+	elseif($_GET['action'] == 'joinUser'){
+		
+		$email = $_POST['email'];
+		$password = $_POST['password'];
+		
+		$resultat = joinUser($email);
+		
+		echo $resultat;
+		
+		$isPasswordCorrect = password_verify($password, $resultat['password']);
+		
+		if (!$resultat['password'])
+		{
+			
+			echo 'Mauvais identifiant ou mot de passe !';
+		}
+		else
+		{
+			if(isPasswordCorrect){
+				session_start();
+				$_SESSION['id'] = $resultat['id'];
+				$_SESSION['name'] = $resultat['name'];
+				$_SESSION['first_name'] = $resultat['first_name'];
+				$_SESSION['email'] = $resultat['email'];
+				echo 'Vous êtes connectés !';
+			}
+			else{
+				echo 'Mauvais identifiant ou mot de passe !';
+			}
+		}
+	}
+// end of user connexion
 	
 }
 else {

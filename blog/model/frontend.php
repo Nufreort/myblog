@@ -37,12 +37,8 @@ function postComment($postId, $author, $content)
 {
 	$db = dbConnect();
 	
-	$comments = $db->prepare('INSERT INTO comment(post_id, author, content, date) VALUES(:post_id, :author, :content, :date)');
-	$affectedLines = $comments->execute(array(
-		'id' => $postId, 
-		'author' => $author, 
-		'content' => $content,
-		'date' => 'NOW()'));
+	$comments = $db->prepare('INSERT INTO comment(post_id, author, content) VALUES(?, ?, ?)');
+	$affectedLines = $comments->execute(array($postId, $author, $content));
 	
 	return $affectedLines;
 }
@@ -57,6 +53,16 @@ function subUser($name, $first_name, $email, $password)
 	return $dataUser;
 }
 
+function connexionUser($email)
+{
+	$db = dbConnect();
+	
+	$connexion = $db->query('SELECT id, name, first_name, email, password, role FROM user WHERE email = \'marc.andre@gmail.com\'');
+	
+	$resultat = $connexion->fetch();
+	
+	return $resultat;
+}
 
 function dbConnect()
 {
