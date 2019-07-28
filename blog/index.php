@@ -60,9 +60,12 @@ if (isset($_GET['action'])) {
 		$email = $_POST['email'];
 		$password = $_POST['password'];
 		
-		$resultat = joinUser($email);
+$db = new PDO('mysql:host=localhost;dbname=myblog;charset=utf8','root','');
+
+$connexion = $db->prepare('SELECT id, name, first_name, email, password, role FROM user WHERE email = ?');
+$connexion->execute(array($email));
+$resultat = $connexion->fetch();
 		
-		echo $resultat;
 		
 		$isPasswordCorrect = password_verify($password, $resultat['password']);
 		
@@ -73,16 +76,17 @@ if (isset($_GET['action'])) {
 		}
 		else
 		{
-			if(isPasswordCorrect){
+			if($isPasswordCorrect){
 				session_start();
 				$_SESSION['id'] = $resultat['id'];
 				$_SESSION['name'] = $resultat['name'];
 				$_SESSION['first_name'] = $resultat['first_name'];
 				$_SESSION['email'] = $resultat['email'];
-				echo 'Vous êtes connectés !';
+			
+			header('Location:view/memberarea/signUp_done.php');
 			}
 			else{
-				echo 'Mauvais identifiant ou mot de passe !';
+				echo 'Mauvais identifiant ou mot de passe ! (erreur 2)';
 			}
 		}
 	}

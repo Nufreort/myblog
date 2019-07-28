@@ -57,8 +57,8 @@ function connexionUser($email)
 {
 	$db = dbConnect();
 	
-	$connexion = $db->query('SELECT id, name, first_name, email, password, role FROM user WHERE email = \'marc.andre@gmail.com\'');
-	
+	$connexion = $db->prepare('SELECT id, name, first_name, email, password, role FROM user WHERE email = ?');
+	$connexion->execute(array($email));
 	$resultat = $connexion->fetch();
 	
 	return $resultat;

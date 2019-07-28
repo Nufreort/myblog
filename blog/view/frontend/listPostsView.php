@@ -4,7 +4,7 @@
  <?php ob_start();?>
         <h1>Mon super blog !</h1>
         <p>Derniers billets du blog :</p>
- 
+
         
         <?php
         while ($data = $posts->fetch())
