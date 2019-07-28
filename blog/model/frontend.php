@@ -26,11 +26,21 @@ function getComments($postId)
 {
 	$db = dbConnect();
 	
-	$comments = $db->prepare('SELECT id, title, author, content, DATE_FORMAT(date, \'%d/%m/%y à %Hh%imin%ss\') AS comment_date FROM comment WHERE id = ? ORDER BY date DESC');
+	$comments = $db->prepare('SELECT id, author, content, DATE_FORMAT(date, \'%d/%m/%y à %Hh%imin%ss\') AS comment_date FROM comment WHERE post_id = ? ORDER BY comment_date DESC');
 	$comments->execute(array($postId));
 
 
 	return $comments;
+}
+
+function postComment($postId, $author, $content)
+{
+	$db = dbConnect();
+	
+	$comments = $db->prepare('INSERT INTO comment(post_id, author, content, date) VALUES(?, ?, ?, NOW())');
+	$affectedLines = $comments->execute(array($postId, $author, $content));
+	
+	return $affectedLines;
 }
 
 function dbConnect()

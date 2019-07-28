@@ -29,3 +29,21 @@
         ?>
 <?php $content = ob_get_clean(); ?>
 <?php require('template.php'); ?>
+
+<form action="index.php?action=addComment&amp;id=<?= $post['id'] ?>" method="post">
+	<div>
+		<label for="author">Auteur :</label><br />
+		<input type="text" id="author" name="author" />
+	</div>
+	<div>
+		<label for="content">Commentaire :</label><br />
+		<textarea id="content" name="content"></textarea>
+	</div>
+	
+	<div>
+		<input type="submit" value="Valider" />
+	</div>
+
+
+</form>
+
