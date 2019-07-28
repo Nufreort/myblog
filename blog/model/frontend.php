@@ -37,17 +37,21 @@ function postComment($postId, $author, $content)
 {
 	$db = dbConnect();
 	
-	$comments = $db->prepare('INSERT INTO comment(post_id, author, content, date) VALUES(?, ?, ?, NOW())');
-	$affectedLines = $comments->execute(array($postId, $author, $content));
+	$comments = $db->prepare('INSERT INTO comment(post_id, author, content, date) VALUES(:post_id, :author, :content, :date)');
+	$affectedLines = $comments->execute(array(
+		'id' => $postId, 
+		'author' => $author, 
+		'content' => $content,
+		'date' => 'NOW()'));
 	
 	return $affectedLines;
 }
 
-function subUser()
+function subUser($name, $first_name, $email, $password)
 {
 	$db = dbConnect();
 	
-	$member = $db->prepare('INSERT INTO user(name, first_name, email, password, role, sub_date) VALUES(?, ?, ?, ?, membre, NOW())');
+	$member = $db->prepare('INSERT INTO user(name, first_name, email, password) VALUES(?, ?, ?, ?)');
 	$dataUser = $member->execute(array($name, $first_name, $email, $password));
 	
 	return $dataUser;

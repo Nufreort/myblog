@@ -19,7 +19,7 @@ function post()
 
 function addComment($postId, $author, $content)
 {
-	$affectedLines = PostComment($postId, $author, $content);
+	$affectedLines = postComment($postId, $author, $content);
 	
 	if ($affectedLines === false){
 		die('Impossible d\'ajouter le commentaire !');
