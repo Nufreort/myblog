@@ -43,6 +43,17 @@ function postComment($postId, $author, $content)
 	return $affectedLines;
 }
 
+function subUser()
+{
+	$db = dbConnect();
+	
+	$member = $db->prepare('INSERT INTO user(name, first_name, email, password, role, sub_date) VALUES(?, ?, ?, ?, membre, NOW())');
+	$dataUser = $member->execute(array($name, $first_name, $email, $password));
+	
+	return $dataUser;
+}
+
+
 function dbConnect()
 {
 	

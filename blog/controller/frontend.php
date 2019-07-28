@@ -6,7 +6,7 @@ function listPosts()
 {
     $posts = getPosts();
 
-    require('view/listPostsView.php');
+    require('view/frontend/listPostsView.php');
 }
 
 function post()
@@ -14,17 +14,29 @@ function post()
     $post = getPost($_GET['id']);
     $comments = getComments($_GET['id']);
 
-    require('view/postView.php');
+    require('view/frontend/postView.php');
 }
 
-function addComment($postId, $author, $comment)
+function addComment($postId, $author, $content)
 {
-	$affectedLines = PostComment($postId, $author, $comment);
+	$affectedLines = PostComment($postId, $author, $content);
 	
 	if ($affectedLines === false){
 		die('Impossible d\'ajouter le commentaire !');
 	}
 	else{
 		header('Location: index.php?action=post&id=' .$postId);
+	}
+}
+
+function addUser($name, $first_name, $email, $password)
+{
+	$dataUser = subUser($name, $first_name, $email, $password);
+	
+	if ($dataUser === false){
+		die('Impossible de s\'inscrire !');
+	}
+	else{
+		header('Location: view/memberarea/signIn_done.php');
 	}
 }

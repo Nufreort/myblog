@@ -7,6 +7,11 @@
     </head>
         
     <body>
+		<div class="menu">
+			<ul>
+				<li><a href="view/memberarea/signIn.php">Inscription</a></li>
+			</ul>
+		</div>
         <?= $content ?>
     </body>
 </html>
