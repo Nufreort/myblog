@@ -13,7 +13,7 @@
 			<?php 
 			if (isset($_SESSION['id']) AND isset($_SESSION['first_name']))
 			{
-				echo '<p>Vous êtes connecté en tant que ' . $_SESSION['first_name'] . ' !</p>';
+				echo '<p>Vous êtes connecté en tant que ' . $_SESSION['first_name'] . ' !</p><p>Votre id de session est :' . $_SESSION['id'] . '</p>';
 			}
 			?>
 			<nav class="menu">

@@ -1,6 +1,9 @@
 <?php
+require_once("model/Manager.php");
 
-function subUser($name, $first_name, $email, $password)
+class UserManager extends Manager
+{
+	function subUser($name, $first_name, $email, $password)
 {
 	$db = dbConnect();
 	
@@ -21,18 +24,4 @@ function connexionUser($email)
 	return $resultat;
 }
 
-function dbConnect()
-{
-	
-	try
-	{
-		$db = new PDO('mysql:host=localhost;dbname=myblog;charset=utf8','root','');
-
-		return $db;
-	}
-
-	catch(Exception $e)
-	{
-		die('Erreur : '. $e->getMessage());
-	}
 }

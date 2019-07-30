@@ -13,16 +13,15 @@
         <div class="news">
             <h3>
                 <?php echo htmlspecialchars($data['title']); ?>
-				<?php echo '- Ecrit par : ' . htmlspecialchars($data['writter_name']) . ' ' . htmlspecialchars($data['writter']); ?>
-                <em> (le <?php echo $data['post_date']; ?>)</em>
+                <em>le <?php echo $data['post_date']; ?></em>
             </h3>
             
             <p>
             <?php
-            echo nl2br(htmlspecialchars($data['description']));
+            echo nl2br(htmlspecialchars($data['content']));
             ?>
             <br />
-            <em><a href="index.php?action=post&amp;id=<?= $data['id'] ?>?>">Commentaires</a></em>
+            <em><a href="index.php?action=post&amp;id=<?= $data['id'] ?>">Commentaires</a></em>
             </p>
         </div>
         <?php

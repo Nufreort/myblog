@@ -1,25 +1,50 @@
 <?php
 
-require('model/frontend.php');
+require_once('model/PostManager.php');
+require_once('model/CommentManager.php');
+require_once('model/UserManager.php');
 
 function listPosts()
 {
-    $posts = getPosts();
-
-    require('view/frontend/listPostsView.php');
+	$postManager = new PostManager();
+	
+			$posts = $postManager->getPosts();
+    		require('view/frontend/listPostsView.php');
+    
 }
 
 function post()
 {
-    $post = getPost($_GET['id']);
-    $comments = getComments($_GET['id']);
+	$postManager = new PostManager();
+	$commentManager = new CommentManager();
+	
+	
+			$post = $postManager->getPost($_GET['id']);
+    $comments = $commentManager-> getComments($_GET['id']);
 
     require('view/frontend/postView.php');
+
+	}
+
+function postVisitor()
+{
+	$postManager = new PostManager();
+	$commentManager = new CommentManager();
+	
+	
+			$post = $postManager->getPost($_GET['id']);
+    $comments = $commentManager-> getComments($_GET['id']);
+
+	require('view/frontend/postViewVisitor.php');
 }
+    
+
 
 function addComment($postId, $author, $content)
 {
-	$affectedLines = postComment($postId, $author, $content);
+	$commentManager = new CommmentManager();
+	
+	$affectedLines = $commentManager->postComment($postId, $author, $content);
 	
 	if ($affectedLines === false){
 		die('Impossible d\'ajouter le commentaire !');
@@ -31,7 +56,9 @@ function addComment($postId, $author, $content)
 
 function addUser($name, $first_name, $email, $password)
 {
-	$dataUser = subUser($name, $first_name, $email, $password);
+	$userManager = new UserManager();
+	
+	$dataUser = $userManager->subUser($name, $first_name, $email, $password);
 	
 	if ($dataUser === false){
 		die('Impossible de s\'inscrire ! <br /> Veuillez vérifier les informations saisies ou changer d\'email.');
@@ -43,5 +70,7 @@ function addUser($name, $first_name, $email, $password)
 
 function joinUser($email)
 {
-	connexionUser($email);
+	$userManager = new UserManager();
+	
+	$userManager->connexionUser($email);
 }

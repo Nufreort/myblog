@@ -7,10 +7,13 @@
 
         <div class="news">
             <h3>
-                <?= htmlspecialchars($post['title']) ?>
-                <em>le <?= $post['post_date'] ?></em>
+                <?php echo htmlspecialchars($post['title']); ?>
+				<?php echo '- Ecrit par : ' . htmlspecialchars($post['writter_name']) . ' ' . htmlspecialchars($post['writter']); ?>
+                <em> (le <?php echo $post['post_date']; ?>)</em>
             </h3>
-            
+            <p>
+                <?= nl2br(htmlspecialchars($post['description'])) ?>
+            </p>
             <p>
                 <?= nl2br(htmlspecialchars($post['content'])) ?>
             </p>
@@ -22,7 +25,7 @@
         while ($comment = $comments->fetch())
         {
         ?>
-            <p><strong><?= htmlspecialchars($comment['author']) ?></strong> le <?= $comment['comment_date'] ?></p>
+            <p><strong><?= htmlspecialchars($comment['writter_name']) ?> <?= htmlspecialchars($comment['writter']) ?></strong> le <?= $comment['comment_date'] ?></p>
             <p><?= nl2br(htmlspecialchars($comment['content'])) ?></p>
         <?php
         }

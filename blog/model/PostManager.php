@@ -1,11 +1,12 @@
 <?php
-class PostManager
-{
+require_once("model/Manager.php");
+
+class PostManager extends Manager{
 	public function getPosts()
 	{
 		$db = $this->dbConnect();
 
-		$req = $db->query('SELECT id, title, description, content, DATE_FORMAT(post_date, \'%d/%m/%y à %Hh%imin%ss\') AS post_date FROM post ORDER BY post_date DESC LIMIT 0,5');
+		$req = $db->query('SELECT post.id, post.title, post.description, post.content, post.author, user.name AS writter_name, user.first_name AS writter, DATE_FORMAT(post.post_date, \'%d/%m/%y à %Hh%imin%ss\') AS post_date FROM post INNER JOIN user ON user.id = post.author ORDER BY post_date DESC LIMIT 0,5');
 
 		return $req;
 	}
@@ -15,26 +16,10 @@ class PostManager
 
 		$db = $this->dbConnect();
 
-		$req = $db->prepare('SELECT id, title, content, DATE_FORMAT(post_date, \'%d/%m/%y à %Hh%imin%ss\') AS post_date FROM post WHERE id = ?');
+		$req = $db->prepare('SELECT post.id, post.title, post.description, post.content, post.author, user.name AS writter_name, user.first_name AS writter, DATE_FORMAT(post.post_date, \'%d/%m/%y à %Hh%imin%ss\') AS post_date FROM post INNER JOIN user ON user.id = post.author WHERE post.id = ?');
 		$req->execute(array($postId));
 		$post= $req->fetch();
 
 		return $post;
-	}
-
-	private function dbConnect()
-	{
-
-		try
-		{
-			$db = new PDO('mysql:host=localhost;dbname=myblog;charset=utf8','root','');
-
-			return $db;
-		}
-
-		catch(Exception $e)
-		{
-			die('Erreur : '. $e->getMessage());
-		}
 	}
 }
