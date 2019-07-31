@@ -1,3 +1,6 @@
+<?php
+session_start(); ?>
+
 <?php $title = 'Mon blog'; ?>
 
 
@@ -5,20 +8,7 @@
         <h1>Mon super blog !</h1>
         <p><a href="index.php">Retour à la liste des billets</a></p>
 
-        <div class="news">
-            <h3>
-                <?php echo htmlspecialchars($post['title']); ?>
-				<?php echo '- Ecrit par : ' . htmlspecialchars($post['writter_name']) . ' ' . htmlspecialchars($post['writter']); ?>
-                <em> (le <?php echo $post['post_date']; ?>)</em>
-            </h3>
-            <p>
-                <?= nl2br(htmlspecialchars($post['description'])) ?>
-            </p>
-            <p>
-                <?= nl2br(htmlspecialchars($post['content'])) ?>
-            </p>
-        </div>
-
+        
         <h2>Commentaires</h2>
 
         <?php
@@ -29,9 +19,7 @@
 
 			<?php
 			if(htmlspecialchars($comment['writter_id']) == $_SESSION['id']){
-			?>
-				<a href="#">Modifer</a> / <a href="#">Supprimer</a>)';
-			<?php
+				echo '(<a href="#">Modifer</a> / <a href="#">Supprimer</a>)';
 			}
 			?>
 			</p>
@@ -57,3 +45,9 @@
 
 <?php $content = ob_get_clean(); ?>
 <?php require('view/template.php'); ?>
+
+
+
+
+
+

@@ -1,4 +1,4 @@
-<?php session_start(); ?>
+
 
 <!DOCTYPE html>
 <html>
@@ -21,7 +21,7 @@
 					<li><a href="view/memberarea/signIn.php">Inscription</a></li>
 					<li><a href="view/memberarea/signUp.php">Connexion</a></li>
 					<li><a href="index.php">Accueil</a></li>
-					<li><a href="index.php">Le blog</a></li>
+					<li><a href="../index.php?action=listPosts">Le blog</a></li>
 					<li><a href="view/memberarea/leave.php">Deconnexion</a></li>
 				</ul>
 			</nav>

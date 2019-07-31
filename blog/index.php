@@ -1,4 +1,7 @@
 <?php
+session_start(); ?>
+
+<?php
 require('controller/frontend.php');
 
 //--- index page
@@ -11,17 +14,21 @@ if (isset($_GET['action'])) {
 //-- get the post
     elseif ($_GET['action'] == 'post'){
 			if (isset($_GET['id']) && $_GET['id'] > 0) {
-            post();
-        	}
-        	else {
-            echo 'Erreur : aucun identifiant de billet envoyé';
-        	}
+				if (isset($_SESSION['id'])){
+					post();
+				}
+				else{
+					postVisitor();
+				}		
+				}
+				
+            
 		   }
 
-    
+ // ------------------ COMMENTS ----------//
 		
 	
- // add a comment //
+ // add a comment
 	elseif ($_GET['action'] == 'addComment'){
 		if (isset($_GET['id']) && $_GET['id']> 0){
 			if (!empty($_POST['author']) && !empty($_POST['content'])){
@@ -36,7 +43,13 @@ if (isset($_GET['action'])) {
 			echo 'Erreur : aucun identifiant de billet envoyé';
 		}
 	}
-// end of add a comment
+// update a comment
+
+	elseif ($_GET['action'] == 'edit'){
+		header('Location:view/commentManager/editComment.php');
+	}
+	
+// ------------------- USER ----------------- //
 
 //add a user
 	elseif ($_GET['action'] == 'addUser'){
@@ -101,5 +114,5 @@ $resultat = $connexion->fetch();
 	
 }
 else {
-    listPosts();
+    header('Location:view/presentation.php');
 }

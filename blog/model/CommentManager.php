@@ -7,7 +7,7 @@ class CommentManager extends Manager
 	{
 		$db = $this->dbConnect();
 
-		$comments = $db->prepare('SELECT comment.id, comment.author, comment.content, user.name AS writter_name, user.first_name AS writter, DATE_FORMAT(comment.date, \'%d/%m/%y à %Hh%imin%ss\') AS comment_date FROM comment INNER JOIN user ON user.id = comment.author WHERE post_id = ? ORDER BY comment_date DESC');
+		$comments = $db->prepare('SELECT comment.id, comment.author, comment.content, user.id AS writter_id, user.name AS writter_name, user.first_name AS writter, DATE_FORMAT(comment.date, \'%d/%m/%y à %Hh%imin%ss\') AS comment_date FROM comment INNER JOIN user ON user.id = comment.author WHERE post_id = ? ORDER BY comment_date DESC');
 		$comments->execute(array($postId));
 
 

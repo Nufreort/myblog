@@ -3,9 +3,9 @@ require_once("model/Manager.php");
 
 class UserManager extends Manager
 {
-	function subUser($name, $first_name, $email, $password)
+	public function subUser($name, $first_name, $email, $password)
 {
-	$db = dbConnect();
+	$db = $this->dbConnect();
 	
 	$member = $db->prepare('INSERT INTO user(name, first_name, email, password) VALUES(?, ?, ?, ?)');
 	$dataUser = $member->execute(array($name, $first_name, $email, $password));
@@ -13,9 +13,9 @@ class UserManager extends Manager
 	return $dataUser;
 }
 
-function connexionUser($email)
+public function connexionUser($email)
 {
-	$db = dbConnect();
+	$db = $this->dbConnect();
 	
 	$connexion = $db->prepare('SELECT id, name, first_name, email, password, role FROM user WHERE email = ?');
 	$connexion->execute(array($email));
