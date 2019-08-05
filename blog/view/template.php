@@ -1,11 +1,11 @@
-
-
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8" />
-        <title><?= $title ?></title>
-        <link href="public/css/style.css" rel="stylesheet" /> 
+        <title>Mon blog</title>
+		<link rel="stylesheet" href="public/css/style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
     </head>
         
     <body>
@@ -15,26 +15,34 @@
 			{
 				echo '<p>Vous êtes connecté en tant que ' . $_SESSION['first_name'] . ' !</p><p>Votre id de session est :' . $_SESSION['id'] . '</p>';
 			}
+			
 			?>
 			<nav class="menu">
 				<ul>
-					<li><a href="view/memberarea/signIn.php">Inscription</a></li>
-					<li><a href="view/memberarea/signUp.php">Connexion</a></li>
-					<li><a href="index.php">Accueil</a></li>
-					<li><a href="../index.php?action=listPosts">Le blog</a></li>
-					<li><a href="view/memberarea/leave.php">Deconnexion</a></li>
+                    <li><a href="index.php">Accueil</a></li>
+					<li><a href="index.php?action=signIn">Inscription</a></li>
+					<li><a href="index.php?action=signUp">Connexion</a></li>
+					<li><a href="index.php?action=listPosts">Le blog</a></li>
+					<li><a href="index.php?action=leave">Deconnexion</a></li>
 				</ul>
 			</nav>
 		</header>
-		
-		
         
-		<?= $content ?>
+		<?php
+            require($page);
+        ?>
 		
 		<footer class="bloc">
-			<p>Suivez-moi sur mes réseaux !<a href="https://www.linkedin.com/in/ldx/"><img scr="in.png" alt="icone linkedin"/></a></p>
-			<p><a href="#">Admin</a></p>
+			<p>
+				Suivez-moi sur mes réseaux !
+<!--- <a href="https://www.linkedin.com/in/ldx/">
+<img src="public/images/in.png" alt="icone linkedin" class="icone"/></a> -->
+			</p>
+			<p>
+				<a class="waves-effect waves-light btn" href="#">Admin</a>
+			</p>
 		</footer>
-		
     </body>
 </html>
+
+

@@ -1,9 +1,10 @@
-<?php $title = 'Mon blog'; ?>
+<h1>
+    Ne soyez pas timide, inscrivez-nous !
+</h1>
 
-
-<?php ob_start(); ?>
-        <h1>Ne soyez pas timide, inscrivez-nous !</h1>
-        <p><a href="../../index.php">Retour à la page d'accueil</a></p>
+<p>
+    <a href="../../index.php">Retour à la page d'accueil</a>
+</p>
 
 <form class="sub" action="../../index.php?action=addUser" method="post">
 	<div>
@@ -30,8 +31,3 @@
 		<input type="submit" value="Valider" />
 	</div>
 </form>
-<?php $content = ob_get_clean(); ?>
-<?php require('../template.php'); ?>
-
-
-

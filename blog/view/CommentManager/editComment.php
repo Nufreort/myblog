@@ -6,30 +6,13 @@ session_start(); ?>
 
 <?php ob_start(); ?>
         <h1>Mon super blog !</h1>
-        <p><a href="index.php">Retour à la liste des billets</a></p>
+        <p><a href="index.php?action=listPosts">Retour à la liste des billets</a></p>
 
         
-        <h2>Commentaires</h2>
+        <h2>Modifier votre Commentaire</h2>
 
-        <?php
-        while ($comment = $comments->fetch())
-        {
-        ?>
-            <p><strong><?= htmlspecialchars($comment['writter_name']) ?> <?= htmlspecialchars($comment['writter']) ?></strong> le <?= $comment['comment_date'] ?>
 
-			<?php
-			if(htmlspecialchars($comment['writter_id']) == $_SESSION['id']){
-				echo '(<a href="#">Modifer</a> / <a href="#">Supprimer</a>)';
-			}
-			?>
-			</p>
-
-            <p><?= nl2br(htmlspecialchars($comment['content'])) ?></p>
-        <?php
-        }
-        ?>
-
-<form action="index.php?action=addComment&amp;id=<?= $post['id'] ?>" method="post">
+<form action="../../index.php?action=editComment" method="post">
 	<div>
 		<label for="author">Auteur :</label><br />
 		<input type="text" id="author" name="author" />
@@ -44,7 +27,7 @@ session_start(); ?>
 </form>	
 
 <?php $content = ob_get_clean(); ?>
-<?php require('view/template.php'); ?>
+<?php require('../../view/template.php'); ?>
 
 
 
