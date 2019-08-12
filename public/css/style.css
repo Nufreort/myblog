@@ -2,6 +2,11 @@ h1, h3
 {
     text-align:center;
 }
+
+h1
+{
+  text-decoration: underline red !important;
+}
 h3
 {
     background-color:black;

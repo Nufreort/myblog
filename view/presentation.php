@@ -1,66 +1,61 @@
 <!--HEADER-->
-  <div class="card-image" height="500px">
+  <div class="card-image">
     <img class="responsive-img" src="public\images\singapore-river-255116_1920.jpg" />
   </div>
-
-<div class="container">
-  <div class="container row">
-
-
-
-    <div class="col s6 card-image">
-      <img class="responsive-img" src="public/images/question.jpg" />
-    </div>
-    <div class="col s6">
-
-      <br/>
-    </div>
-
-
-    <div class="col s6 left">
-      Qu'est-ce qu'un "key partner" ?
-      <br /> Il est simplement le meilleur ami de l'entrepreneur !
-    </div>
-    <div class="col s6 card-image">
-      <img class="responsive-img" src="public/images/archange.jpg" />
-    </div>
-  </div>
-
-  <div class="col s12 m7 l6">
-     <h2 class="header">Horizontal Card</h2>
-     <div class="card horizontal">
-       <div class="card-image">
-         <img class="responsive-img small" src="public/images/question.jpg">
-       </div>
-       <div class="card-stacked">
-         <div class="card-content">
-           <span class="card-title">Partner Agengy : le support dont vous avez besoin</span>
-           <p>Notre agence vous fournit les compétences nécessaires à la réussite de vos projets !.</p>
-         </div>
-         <div class="card-action">
-           <a href="#">This is a link</a>
-         </div>
-       </div>
-     </div>
-   </div>
-
 
   <h1>
       Accueil
   </h1>
 
-  <p>
-      Bienvenue sur mon blog de présentation
-  </p>
+<div class="container">
 
-  <p>
-      Je suis Christopher LOUDOUX, <em>'le key partner'</em> dont votre projet a besoin !
-  </p>
+    <div class="col s12 m7 l6">
+       <h2 class="header">Qui sommes-nous ?</h2>
+       <div class="card horizontal">
+         <div class="card-image">
+           <img class="responsive-img small" src="public/images/question.jpg">
+         </div>
+         <div class="card-stacked">
+           <div class="card-content">
+             <span class="card-title">Partner Agengy : le support dont vous avez besoin</span>
+             <p>J'accompagne les entrepreneurs dans le lancement de leur entreprise et la pérennisation de leur projet.</p>
+             <p>Au quotidien, je suis le key partner dont vous avez besoin !</p>
+           </div>
+         </div>
+       </div>
+     </div>
 
 
-  <p>
-      Pour en apprendre plus sur moi : <a href="../../public/images/cv.php">Mon CV,</a> ou n'hésitez pas à me suivre via les réseaux sociaux <em>(cf contact en pied de page)</em> !
-  </p>
+   <div class="col s12 m7">
+       <h2 class="header">Qu'est-ce qu'un "key partner" ?</h2>
+       <div class="card horizontal">
+         <div class="card-image">
+           <img src="public/images/archange.jpg">
+         </div>
+         <div class="card-stacked">
+           <div class="card-content">
+             <p>Multivalent, je mets à contribution de votre projet mes compétences en comptabilité et finance, développement commercial et développement web.</p>
+             <p>Ainsi, vous pouvez vous concentrer sur votre coeur de métier !</p>
+           </div>
+         </div>
+       </div>
+     </div>
+
+
+     <div class="col s12 m7">
+         <h2 class="header">Mon profil et mes compétences</h2>
+         <div class="card horizontal">
+           <div class="card-image">
+             <img src="public\images\cv.png">
+           </div>
+           <div class="card-stacked">
+             <div class="card-content">
+               <p>Pour en apprendre plus sur mon parcours, n'hésitez pas à consulter <a href="public/files/cv.pdf">Mon CV,</a> !</p>
+             </div>
+           </div>
+         </div>
+       </div>
+
 
   <form action="c.loudoux@gmail.com" method="post">
       <fieldset>
@@ -83,5 +78,4 @@
           </div>
       </fieldset>
   </form>
-  </div>
 </div>
