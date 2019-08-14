@@ -13,7 +13,7 @@
        <h2 class="header">Qui sommes-nous ?</h2>
        <div class="card horizontal">
          <div class="card-image">
-           <img class="responsive-img small" src="public/images/question.jpg">
+           <img class="responsive-img img-perso1" src="public/images/question.jpg">
          </div>
          <div class="card-stacked">
            <div class="card-content">
@@ -30,7 +30,7 @@
        <h2 class="header">Qu'est-ce qu'un "key partner" ?</h2>
        <div class="card horizontal">
          <div class="card-image">
-           <img src="public/images/archange.jpg">
+           <img class="responsive-img img-perso1" src="public/images/man.png">
          </div>
          <div class="card-stacked">
            <div class="card-content">
@@ -46,7 +46,7 @@
          <h2 class="header">Mon profil et mes compétences</h2>
          <div class="card horizontal">
            <div class="card-image">
-             <img src="public\images\cv.png">
+             <img class="responsive-img img-perso1" src="public\images\cv.png">
            </div>
            <div class="card-stacked">
              <div class="card-content">

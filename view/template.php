@@ -17,7 +17,7 @@
 			}
 
 			?>
-      <nav>
+      <nav class="nav-perso">
         <div class="nav-wrapper black nav-perso">
           <div class="container">
             <a href="index.php" class="brand-logo"><img class="responsive-img logo-v" src="public/images/logo ldx2.png"/></a>
@@ -40,25 +40,12 @@
 
 		<footer class="page-footer black">
           <div class="container">
-            <div class="row">
-              <div class="col l6 s12">
-                <h5 class="white-text">Et si on gardait contact ?</h5>
-                <p class="grey-text text-lighten-4">
-					Suivez-moi sur mes réseaux !<a href="https://www.linkedin.com/in/ldx/">
-					<img src="public/images/in.png" alt="icone linkedin" class="icone"/></a>
-				</p>
-              </div>
-              <div class="col l4 offset-l2 s12">
-                <h5 class="white-text">Links</h5>
-                <ul>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
-                </ul>
-              </div>
-            </div>
+            <h5 class="white-text">Et si on gardait contact ?
+              <a href="https://www.linkedin.com/in/ldx/">
+					    <img src="public/images/in.png" alt="icone linkedin" class="icone-perso"/></a>
+            </h5>
           </div>
+
           <div class="footer-copyright">
             <div class="container">
             © 2019 Copyright LDX Corp.
