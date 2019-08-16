@@ -11,10 +11,10 @@ function listPosts()
 		$postManager = new PostManager();
 
 		$posts = $postManager->getPosts();
-    
+
         $page = 'view/frontend/listPostsView.php';
         require('view/template.php');
-        
+
 	}
 
 function listPostsVisitor()
@@ -22,10 +22,10 @@ function listPostsVisitor()
 		$postManager = new PostManager();
 
 		$posts = $postManager->getPosts();
-    
+
         $page = 'view/frontend/listPostsVisitor.php';
         require('view/template.php');
-        
+
 	}
 
 function post()
@@ -37,7 +37,8 @@ function post()
 		$post = $postManager->getPost($_GET['id']);
 		$comments = $commentManager-> getComments($_GET['id']);
 
-		require('view/frontend/postView.php');
+		$page = 'view/frontend/postView.php';
+		require('view/template.php');
 	}
 
 function postVisitor()
@@ -52,7 +53,7 @@ function postVisitor()
         $page = 'view/frontend/postViewVisitor.php';
         require('view/template.php');
 	}
-    
+
 //----------------- COMMENT ---------------//
 
 function addComment($postId, $author, $content)
