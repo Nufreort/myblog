@@ -13,12 +13,12 @@ class CommentManager extends Manager
 			return $comments;
 		}
 
-		public function postComment($postId, $author, $content)
+		public function postComment($content, $postId)
 		{
-			$db = dbConnect();
+			$db = $this->dbConnect();
 
-			$comments = $this->$db->prepare('INSERT INTO comment(post_id, author, content) VALUES(?, ?, ?)');
-			$affectedLines = $comments->execute(array($postId, $author, $content));
+			$comments = $db->prepare('INSERT INTO comment(author, content, post_id) VALUES(?, ?, ?)');
+			$affectedLines = $comments->execute(array($_SESSION['id'], $content, $postId));
 
 			return $affectedLines;
 		}
@@ -31,5 +31,15 @@ class CommentManager extends Manager
 			$editedLines = $comments->execute(array($commentId, $commentContent));
 
 			return $editedLines;
+		}
+
+		public function removeComment($commentId)
+		{
+			$db = $this->dbConnect();
+
+			$comments = $db->prepare('DELETE FROM comment WHERE id=?');
+			$removedLines = $comments->execute(array($commentId));
+
+			return $removedLines;
 		}
 	}

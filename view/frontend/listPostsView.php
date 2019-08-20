@@ -8,6 +8,10 @@
   </p>
 
   <?php
+    if(isset($_SESSION['id']))
+    {
+      echo '<a href="index.php?action=addPost" class="waves-effect waves-light red btn"><i class="material-icons left">add</i>Ajouter un post</a>';
+    }
       while ($data = $posts->fetch())
       {
   ?>
@@ -24,7 +28,7 @@
       <p>
           <?php echo nl2br(htmlspecialchars($data['description'])); ?>
           <br />
-          <em><a href="index.php?action=post&amp;id=<?= $data['id'] ?>">Commentaires</a></em>
+          <em><a href="index.php?action=post&amp;id=<?= $data['id'] ?>">Lire l'article</a></em>
       </p>
     </div>
   </div>

@@ -54,13 +54,30 @@ function postVisitor()
         require('view/template.php');
 	}
 
+	function addPost()
+	{
+
+		$page = 'view/PostManager/addPost.php';
+		require('view/template.php');
+	}
+
+	function addedPost($title, $summary, $content)
+	{
+		$postManager = new PostManager();
+		$dataPost = $postManager->sendedPost($title, $summary, $content);
+
+
+		echo '<p>Votre billet a bien été envoyé, il va être soumis à validation dans les plus brefs délais</p>';
+		$page = 'view/presentation.php';
+		require('view/template.php');
+	}
+
 //----------------- COMMENT ---------------//
 
-function addComment($postId, $author, $content)
+function addComment($content, $postId)
 	{
-		$commentManager = new CommmentManager();
-
-		$affectedLines = $commentManager->postComment($postId, $author, $content);
+		$commentManager = new CommentManager();
+		$affectedLines = $commentManager->postComment($content, $postId);
 
 		if ($affectedLines === false)
 			{
@@ -87,6 +104,15 @@ function updateComment($commentId, $commentContent)
 			}
 	}
 
+function deleteComment($commentId, $postId)
+{
+	$commentManager = new CommentManager();
+	$removeComment = $commentManager->removeComment($commentId);
+
+	$page = 'view/presentation.php';
+	require('view/template.php');
+}
+
 //----------------- USER ---------------//
 
 function addUser($name, $first_name, $email, $password)
@@ -109,6 +135,14 @@ function joinUser($email)
 		$userManager = new UserManager();
 		$userManager->connexionUser($email);
 	}
+//----------------- BACK OFFICE ---------------//
+
+function admin()
+{
+	$page = 'view/BackOffice/backOffice.php';
+	require('view/template.php');
+}
+
 
 //----------------- NAVIGATION ---------------//
 

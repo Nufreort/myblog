@@ -1,6 +1,6 @@
 <div class="container">
 	<p>
-		<a href="index.php">Retour à la liste des billets</a>
+		<a href="index.php?action=listPosts">Retour à la liste des billets</a>
 	</p>
 
 
@@ -42,7 +42,7 @@
 					{
 				?>
 
-				(<a href="#">Modifer</a> / <a href="#">Supprimer</a>)';
+				(<a href="#">Modifer</a> / <a href="index.php?action=deleteComment&amp;commentId=<? $comment['id'] ?>&amp;post=<? $post['id'] ?>">Supprimer</a>);
 
 				<?php
 					}
@@ -55,24 +55,21 @@
 		</div>
 	</div>
 
-
 	<?php
 		}
 	?>
+
+	<p> Pour rappel, l'ajout des commentaires est soumis à validation.
+		Votre commentaire apparaitre dans les prochaines 72h. Merci de votre compréhension !
+	</p>
 
 	<form action="index.php?action=addComment&amp;id=<?= $post['id'] ?>" method="post">
 		<fieldset>
 			<legend>Ajouter votre commentaire :</legend>
 			<div>
-				<label for="author">Auteur :</label><br />
-				<input type="text" id="author" name="author" />
-			</div>
-
-			<div>
 				<label for="content">Commentaire :</label><br />
 				<textarea id="content" name="content"></textarea>
 			</div>
-
 			<div>
 				<input type="submit" value="Valider" />
 			</div>
