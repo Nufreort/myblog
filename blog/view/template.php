@@ -31,8 +31,9 @@
   					<li><a href="index.php?action=leave" class="waves-effect waves-light btn-small red black-text"><i class="small material-icons">power_settings_new</i></a></li>
           </ul>
 
+<!--
           <a href="#" data-activates="mobile-menu" class="button-collapse right"><i class="material-icons">menu</i></a>
-          <ul id="side-nave" id="mobile-menu" class="right hide-on-med-and-down">
+          <ul id="side-nave" id="mobile-menu" class="right">
             <li><a href="index.php">Accueil</a></li>
             <li><a href="index.php?action=listPosts">Le blog</a></li>
             <li><a href="index.php?action=signIn" class="waves-effect waves-light btn-small white black-text">Inscription</a></li>
@@ -40,6 +41,24 @@
   					<li><a href="index.php?action=leave" class="waves-effect waves-light btn-small red black-text"><i class="small material-icons">power_settings_new</i></a></li>
           </ul>
 
+
+            <ul id="slide-out" class="sidenav">
+            <li><div class="user-view">
+              <div class="background">
+                <img src="images/office.jpg">
+              </div>
+              <a href="#user"><img class="circle" src="images/yuna.jpg"></a>
+              <a href="#name"><span class="white-text name">John Doe</span></a>
+              <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
+            </div></li>
+            <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
+            <li><a href="#!">Second Link</a></li>
+            <li><div class="divider"></div></li>
+            <li><a class="subheader">Subheader</a></li>
+            <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+          </ul>
+          <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+-->
         </div>
       </nav>
 		</header>
@@ -59,11 +78,12 @@
           <div class="footer-copyright">
             <div class="container">
             © 2019 Copyright LDX Corp.
-            <a class="waves-effect waves-light btn right" href="#">Admin</a>
+            <a class="waves-effect waves-light btn right" href="index.php?action=admin">Admin</a>
             </div>
           </div>
         </footer>
 
-		<script type="text/javascript" src="js/materialize.min.js"></script>
+		<script type="text/javascript" src="public/js/materialize.min.js"></script>
+    <script type="text/javascrpt" src="public/js/script.js"></script>
     </body>
 </html>

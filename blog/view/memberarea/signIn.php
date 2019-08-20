@@ -4,10 +4,10 @@
   </h1>
 
   <p>
-      <a href="../../index.php">Retour à la page d'accueil</a>
+      <a href="index.php">Retour à la page d'accueil</a>
   </p>
 
-  <form class="sub" action="../../index.php?action=addUser" method="post">
+  <form class="sub" action="index.php?action=addUser" method="post">
     <fieldset>
       <legend>Formulaire d'inscription :</legend>
     	<div>

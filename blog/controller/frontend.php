@@ -17,16 +17,6 @@ function listPosts()
 
 	}
 
-function listPostsVisitor()
-	{
-		$postManager = new PostManager();
-
-		$posts = $postManager->getPosts();
-
-        $page = 'view/frontend/listPostsVisitor.php';
-        require('view/template.php');
-
-	}
 
 function post()
 	{
@@ -41,26 +31,31 @@ function post()
 		require('view/template.php');
 	}
 
-function postVisitor()
+
+	function addPost()
+	{
+
+		$page = 'view/PostManager/addPost.php';
+		require('view/template.php');
+	}
+
+	function addedPost($title, $summary, $content)
 	{
 		$postManager = new PostManager();
-		$commentManager = new CommentManager();
+		$dataPost = $postManager->sendedPost($title, $summary, $content);
 
 
-		$post = $postManager->getPost($_GET['id']);
-		$comments = $commentManager-> getComments($_GET['id']);
-
-        $page = 'view/frontend/postViewVisitor.php';
-        require('view/template.php');
+		echo '<p>Votre billet a bien été envoyé, il va être soumis à validation dans les plus brefs délais</p>';
+		$page = 'view/presentation.php';
+		require('view/template.php');
 	}
 
 //----------------- COMMENT ---------------//
 
-function addComment($postId, $author, $content)
+function addComment($content, $postId)
 	{
-		$commentManager = new CommmentManager();
-
-		$affectedLines = $commentManager->postComment($postId, $author, $content);
+		$commentManager = new CommentManager();
+		$affectedLines = $commentManager->postComment($content, $postId);
 
 		if ($affectedLines === false)
 			{
@@ -72,20 +67,39 @@ function addComment($postId, $author, $content)
 			}
 	}
 
-function updateComment($commentId, $commentContent)
-	{
-		$commentManager = new CommentManager();
-		$dataComment = $commentManager->editComment($commentId, $commentContent);
+function editComment($commentId, $postId)
+{
+	$commentManager = new CommentManager();
+	$comments = $commentManager-> getComment($commentId, $postId);
 
-		if ($dataComment === false)
-			{
-				die('Impossible de modifier le commentaire.');
-			}
-		else
-			{
-				header('Location:index.php');
-			}
-	}
+	$page = 'view/CommentManager/editComment.php';
+	require('view/template.php');
+}
+
+function editedComment($commentId, $commentContent, $postId)
+{
+	$commentManager = new CommentManager();
+	$editedLines = $commentManager->editedComment($commentId, $commentContent);
+
+	if ($editedLines === false)
+		{
+			die('Impossible de modifier le commentaire.');
+		}
+	else
+		{
+			$page = 'view/presentation.php';
+			require('view/template.php');
+		}
+}
+
+function deleteComment($commentId, $postId)
+{
+	$commentManager = new CommentManager();
+	$removeComment = $commentManager->removeComment($commentId);
+
+
+	header('Location: index.php?action=post&id=' .$postId);
+}
 
 //----------------- USER ---------------//
 
@@ -109,6 +123,14 @@ function joinUser($email)
 		$userManager = new UserManager();
 		$userManager->connexionUser($email);
 	}
+//----------------- BACK OFFICE ---------------//
+
+function admin()
+{
+	$page = 'view/BackOffice/backOffice.php';
+	require('view/template.php');
+}
+
 
 //----------------- NAVIGATION ---------------//
 

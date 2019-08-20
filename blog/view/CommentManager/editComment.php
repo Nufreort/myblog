@@ -1,36 +1,38 @@
-<?php
-session_start(); ?>
+<div class="container">
+  <h1>Modifier votre commentaire</h1>
+  <p><a href="index.php?action=listPosts">Retour à l'article</a></p>
 
-<?php $title = 'Mon blog'; ?>
+  <p>Votre commentaire à modifier :</p>
 
-
-<?php ob_start(); ?>
-        <h1>Mon super blog !</h1>
-        <p><a href="index.php?action=listPosts">Retour à la liste des billets</a></p>
-
-        
-        <h2>Modifier votre Commentaire</h2>
-
-
-<form action="../../index.php?action=editComment" method="post">
-	<div>
-		<label for="author">Auteur :</label><br />
-		<input type="text" id="author" name="author" />
-	</div>
-	<div>
-		<label for="content">Commentaire :</label><br />
-		<textarea id="content" name="content"></textarea>
-	</div>
-	<div>
-		<input type="submit" value="Valider" />
-	</div>
-</form>	
-
-<?php $content = ob_get_clean(); ?>
-<?php require('../../view/template.php'); ?>
+  <?php
+    while ($comment = $comments->fetch())
+    {
+  ?>
+  <div class="card">
+    <div class="card-content">
+      <p>
+        <strong><?= htmlspecialchars($comment['writter_name']) ?> <?= htmlspecialchars($comment['writter']) ?></strong> le <?= $comment['comment_date'] ?>
+      </p>
+      <p>
+        <?= nl2br(htmlspecialchars($comment['content'])) ?>
+      </p>
+    </div>
+  </div>
 
 
 
 
+  <form action="index.php?action=editedComment&amp;commentId=<?= $comment['id'] ?>&amp;postId=<?= $_GET['postId'] ?>" method="post">
+  	<div>
+  		<label for="content">Commentaire :</label><br />
+  		<textarea id="content" name="content"><?= $comment['content'] ?></textarea>
+  	</div>
+  	<div>
+  		<input type="submit" value="Valider" />
+  	</div>
+  </form>
 
-
+  <?php
+    }
+  ?>
+</div>
