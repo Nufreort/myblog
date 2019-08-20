@@ -4,6 +4,18 @@
 	</p>
 
 
+		<?php
+			if($_SESSION['id']==$post["author"])
+			{
+		?>
+				<div>
+					<a href="index.php?action=editPost&amp;postId=<?= $post['id'] ?>" class="waves-effect waves-light btn-small blue"><i class="material-icons left">edite</i>Modifier l'article</a>
+					<a href="index.php?action=deletePost&amp;postId=<?= $post['id'] ?>" class="waves-effect waves-light btn-small blue"><i class="material-icons left">clear</i>Supprimer l'article</a>
+				</div>
+		<?php
+			}
+		?>
+
 
 	  <div class="card">
 		  <div class=card-title>
@@ -42,11 +54,12 @@
 					{
 				?>
 
-				(<a href="index.php?action=editComment&amp;commentId=<?= $comment['id'] ?>&amp;postId=<?= $post['id'] ?>">Modifier</a> / <a href="index.php?action=deleteComment&amp;commentId=<?= $comment['id'] ?>&amp;post=<?= $post['id'] ?>">Supprimer</a>);
+				(<a href="index.php?action=editComment&amp;commentId=<?= $comment['id'] ?>&amp;postId=<?= $post['id'] ?>">Modifier</a> / <a href="index.php?action=deletePost&amp;postId=<?= $post['id'] ?>">Supprimer</a>)
 
 				<?php
 					}
 				?>
+
 			</p>
 
 			<p>

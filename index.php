@@ -42,8 +42,31 @@ session_start(); ?>
 		}
 	}
 
+//edit a post
+	elseif ($_GET['action'] == 'editPost')
+	{
+		$postId=$_GET['postId'];
+		editPost($postId);
+	}
 
- // ------------------ COMMENTS (encours de réalisation) ----------//
+	elseif ($_GET['action'] == 'editedPost')
+	{
+		$postId=$_GET['postId'];
+		$postTitle=$_POST['title'];
+		$postDescription=$_POST['description'];
+		$postContent=$_POST['content'];
+		editedPost($postId, $postTitle, $postDescription, $postContent);
+	}
+
+// delete a post
+	elseif ($_GET['action'] == 'deletePost')
+	{
+		$postId=$_GET['postId'];
+		deletePost($postId);
+	}
+
+
+ // ------------------ COMMENTS  --------------------//
 
 
  // add a comment

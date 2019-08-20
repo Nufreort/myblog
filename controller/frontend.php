@@ -14,9 +14,7 @@ function listPosts()
 
         $page = 'view/frontend/listPostsView.php';
         require('view/template.php');
-
 	}
-
 
 function post()
 	{
@@ -46,6 +44,33 @@ function post()
 
 
 		echo '<p>Votre billet a bien été envoyé, il va être soumis à validation dans les plus brefs délais</p>';
+		$page = 'view/presentation.php';
+		require('view/template.php');
+	}
+
+	function editPost($postId)
+	{
+		$postManager = new PostManager();
+		$post = $postManager->getPost($postId);
+
+		$page = 'view/PostManager/editPost.php';
+		require('view/template.php');
+	}
+
+function editedPost($postId, $postTitle, $postDescription, $postContent)
+{
+	$postManager = new PostManager();
+	$post = $postManager->editedPost($postId, $postTitle, $postDescription, $postContent);
+
+	$page = 'view/presentation.php';
+	require('view/template.php');
+}
+
+	function deletePost($postId)
+	{
+		$postManager = new PostManager();
+		$removedPost = $postManager->removePost($postId);
+
 		$page = 'view/presentation.php';
 		require('view/template.php');
 	}
