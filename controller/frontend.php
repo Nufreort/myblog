@@ -17,16 +17,6 @@ function listPosts()
 
 	}
 
-function listPostsVisitor()
-	{
-		$postManager = new PostManager();
-
-		$posts = $postManager->getPosts();
-
-        $page = 'view/frontend/listPostsVisitor.php';
-        require('view/template.php');
-
-	}
 
 function post()
 	{
@@ -41,18 +31,6 @@ function post()
 		require('view/template.php');
 	}
 
-function postVisitor()
-	{
-		$postManager = new PostManager();
-		$commentManager = new CommentManager();
-
-
-		$post = $postManager->getPost($_GET['id']);
-		$comments = $commentManager-> getComments($_GET['id']);
-
-        $page = 'view/frontend/postViewVisitor.php';
-        require('view/template.php');
-	}
 
 	function addPost()
 	{
@@ -89,28 +67,38 @@ function addComment($content, $postId)
 			}
 	}
 
-function updateComment($commentId, $commentContent)
-	{
-		$commentManager = new CommentManager();
-		$dataComment = $commentManager->editComment($commentId, $commentContent);
+function editComment($commentId, $postId)
+{
+	$commentManager = new CommentManager();
+	$comments = $commentManager-> getComment($commentId, $postId);
 
-		if ($dataComment === false)
-			{
-				die('Impossible de modifier le commentaire.');
-			}
-		else
-			{
-				header('Location:index.php');
-			}
-	}
+	$page = 'view/CommentManager/editComment.php';
+	require('view/template.php');
+}
+
+function editedComment($commentId, $commentContent, $postId)
+{
+	$commentManager = new CommentManager();
+	$editedLines = $commentManager->editedComment($commentId, $commentContent);
+
+	if ($editedLines === false)
+		{
+			die('Impossible de modifier le commentaire.');
+		}
+	else
+		{
+			$page = 'view/presentation.php';
+			require('view/template.php');
+		}
+}
 
 function deleteComment($commentId, $postId)
 {
 	$commentManager = new CommentManager();
 	$removeComment = $commentManager->removeComment($commentId);
 
-	$page = 'view/presentation.php';
-	require('view/template.php');
+
+	header('Location: index.php?action=post&id=' .$postId);
 }
 
 //----------------- USER ---------------//

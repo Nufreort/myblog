@@ -42,7 +42,7 @@
 					{
 				?>
 
-				(<a href="#">Modifer</a> / <a href="index.php?action=deleteComment&amp;commentId=<? $comment['id'] ?>&amp;post=<? $post['id'] ?>">Supprimer</a>);
+				(<a href="index.php?action=editComment&amp;commentId=<?= $comment['id'] ?>&amp;postId=<?= $post['id'] ?>">Modifier</a> / <a href="index.php?action=deleteComment&amp;commentId=<?= $comment['id'] ?>&amp;post=<?= $post['id'] ?>">Supprimer</a>);
 
 				<?php
 					}

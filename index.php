@@ -7,34 +7,22 @@ session_start(); ?>
 //--- index page
 	if (isset($_GET['action']))
 	{
-		if ($_GET['action'] == 'listPosts')
-		{
-            if (isset($_SESSION['id']))
-                {
-                    listPosts();
-                }
-
-            else
-            {
-                listPostsVIsitor();
-            }
-		}
 
 //-- --------------------------- POST -------------------- //
 
-//-- get the post
+//-- get all the posts
+		if ($_GET['action'] == 'listPosts')
+		{
+      listPosts();
+    }
+
+
+//-- get a post
 		elseif ($_GET['action'] == 'post')
 		{
 			if (isset($_GET['id']) && $_GET['id'] > 0)
 			{
-				if (isset($_SESSION['id']))
-				{
 					post();
-				}
-				else
-				{
-					postVisitor();
-				}
 			}
 		}
 
@@ -80,19 +68,33 @@ session_start(); ?>
 		}
 	}
 
-// update a comment
+// edite a comment
 
 	elseif ($_GET['action'] == 'editComment')
 	{
-		updateComment($_GET['Id'], $_GET['content']);
-
-		if($editedLines===false)
-		{
-			die('Impossible de modifier le commentaire.');
-		}
-
-		header('Location:index.php?action=listPostView');
+		$commentId=$_GET['commentId'];
+		$postId=$_GET['postId'];
+		editComment($commentId, $postId);
 	}
+
+	elseif ($_GET['action'] == 'editedComment')
+	{
+		$commentId=$_GET['commentId'];
+		$commentContent=$_POST['content'];
+		$postId=$_GET['postId'];
+		editedComment($commentId, $commentContent, $postId);
+	}
+
+	//{
+	//	updateComment($_GET['Id'], $_GET['content']);
+
+	//	if($editedLines===false)
+	//	{
+	//		die('Impossible de modifier le commentaire.');
+	//	}
+
+	//	header('Location:index.php?action=listPostView');
+//	}
 
 // delete a comment
 

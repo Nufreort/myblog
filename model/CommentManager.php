@@ -13,6 +13,16 @@ class CommentManager extends Manager
 			return $comments;
 		}
 
+		public function getComment($commentId, $postId)
+		{
+			$db = $this->dbConnect();
+
+			$comments = $db->prepare('SELECT comment.id, comment.author, comment.content, user.id AS writter_id, user.name AS writter_name, user.first_name AS writter, DATE_FORMAT(comment.date, \'%d/%m/%y à %Hh%imin%ss\') AS comment_date  FROM comment INNER JOIN user ON user.id = comment.author WHERE post_id = ? AND comment.id = ?');
+			$comments->execute(array($postId, $commentId));
+
+			return $comments;
+		}
+
 		public function postComment($content, $postId)
 		{
 			$db = $this->dbConnect();
@@ -23,12 +33,12 @@ class CommentManager extends Manager
 			return $affectedLines;
 		}
 
-		public function editComment($commentId, $commentContent)
+		public function editedComment($commentId, $commentContent)
 		{
-			$db = dbConnect();
+			$db = $this->dbConnect();
 
-			$comments = $this->$db->preprare('UPDATE comment SET content=?, date= NOW() WHERE id=?');
-			$editedLines = $comments->execute(array($commentId, $commentContent));
+			$comments = $db->prepare('UPDATE comment SET content=? WHERE id=?');
+			$editedLines = $comments->execute(array($commentContent, $commentId));
 
 			return $editedLines;
 		}
