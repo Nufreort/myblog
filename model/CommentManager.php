@@ -7,7 +7,7 @@ class CommentManager extends Manager
 		{
 			$db = $this->dbConnect();
 
-			$comments = $db->prepare('SELECT comment.id, comment.author, comment.content, user.id AS writter_id, user.name AS writter_name, user.first_name AS writter, DATE_FORMAT(comment.date, \'%d/%m/%y à %Hh%imin\') AS comment_date FROM comment INNER JOIN user ON user.id = comment.author WHERE post_id = ? ORDER BY comment_date DESC');
+			$comments = $db->prepare('SELECT comment.id, comment.author, comment.content, user.id AS writter_id, user.name AS writter_name, user.first_name AS writter, DATE_FORMAT(comment.date, \'%d/%m/%y à %Hh%imin\') AS comment_date FROM comment INNER JOIN user ON user.id = comment.author WHERE post_id = ? AND statut = 1 ORDER BY comment_date DESC');
 			$comments->execute(array($postId));
 
 			return $comments;
@@ -19,6 +19,15 @@ class CommentManager extends Manager
 
 			$comments = $db->prepare('SELECT comment.id, comment.author, comment.content, user.id AS writter_id, user.name AS writter_name, user.first_name AS writter, DATE_FORMAT(comment.date, \'%d/%m/%y à %Hh%imin\') AS comment_date  FROM comment INNER JOIN user ON user.id = comment.author WHERE post_id = ? AND comment.id = ?');
 			$comments->execute(array($postId, $commentId));
+
+			return $comments;
+		}
+
+		public function getSendedComments()
+		{
+			$db = $this->dbConnect();
+
+			$comments = $db->query('SELECT comment.id, comment.author, comment.content, user.id AS writter_id, user.name AS writter_name, user.first_name AS writter, DATE_FORMAT(comment.date, \'%d/%m/%y à %Hh%imin\') AS comment_date FROM comment INNER JOIN user ON user.id = comment.author WHERE statut = 0 ORDER BY comment_date DESC');
 
 			return $comments;
 		}

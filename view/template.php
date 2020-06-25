@@ -31,7 +31,7 @@
   					<li><a href="index.php?action=leave" class="waves-effect waves-light btn-small red black-text"><i class="small material-icons">power_settings_new</i></a></li>
           </ul>
 
-<!--
+<!-------------- MOBILE MENU
           <a href="#" data-activates="mobile-menu" class="button-collapse right"><i class="material-icons">menu</i></a>
           <ul id="side-nave" id="mobile-menu" class="right">
             <li><a href="index.php">Accueil</a></li>

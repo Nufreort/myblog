@@ -152,6 +152,12 @@ function joinUser($email)
 
 function admin()
 {
+	$postManager = new PostManager();
+	$posts = $postManager->getPosts();
+
+	$commentManager = new CommentManager();
+	$comments = $commentManager-> getSendedComments();
+
 	$page = 'view/BackOffice/backOffice.php';
 	require('view/template.php');
 }
